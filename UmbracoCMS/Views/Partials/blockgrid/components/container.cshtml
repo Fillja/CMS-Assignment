@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.MyElementTypeAliasOfContent>>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var centerContentClass = Model?.Content.Value<bool>("centerContent") ? "center-content" : "";
+
+    var containerBackgroundImage = Model?.Content.Value<IPublishedContent>("containerBackgroundImage").Url() ?? null;
+}
+
+<div class="container @centerContentClass">
+
+    @if(!string.isNullOrEmpty(sectionBackgroundImage)){
+        <img class="background-image" src="@containerBackgroundImage" alt="background-image">
+    }
+
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+</div>
