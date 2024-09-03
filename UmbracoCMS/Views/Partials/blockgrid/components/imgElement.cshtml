@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var selectedImg = Model?.Content?.Value<IPublishedContent>("selectedImg")?.Url() ?? null;
+    var imgDescription = Model?.Content.Value<string>("imgDescription") ?? "";
+}
+
+@if (!string.IsNullOrEmpty(selectedImg))
+{
+    <img class="background-image" src="@selectedImg" alt="@imgDescription">
+}

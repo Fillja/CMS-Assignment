@@ -2,5 +2,12 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
-@await Html.GetBlockGridItemAreasHtmlAsync(Model)
 
+@{
+    var quoteContent = Model?.Content.Value<string>("quoteContent");
+}
+
+@if (!string.IsNullOrEmpty(quoteContent))
+{
+    <blockquote>@quoteContent</blockquote>
+}

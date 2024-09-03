@@ -2,5 +2,12 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
-@await Html.GetBlockGridItemAreasHtmlAsync(Model)
 
+@{
+    var headlineContent = Model?.Content.Value<string>("headlineContent");
+}
+
+@if (!string.IsNullOrEmpty(headlineContent))
+{
+    <h6>@headlineContent</h6>
+}

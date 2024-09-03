@@ -2,5 +2,12 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
-@await Html.GetBlockGridItemAreasHtmlAsync(Model)
 
+@{
+    var spanContent = Model?.Content.Value<string>("spanContent");
+}
+
+@if (!string.IsNullOrEmpty(spanContent))
+{
+    <span>@spanContent</span>
+}
