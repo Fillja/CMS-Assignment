@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6{
+    @include headings;
+    line-height: 1.4;
+}
+
+h1{
+    font-size: 70px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+h3{
+    font-size: 30px;
+}
+
+h4{
+    font-size: 22px;
+}
+
+h5{
+    font-size: 18px;
+}
+
+h6{
+    font-size: 14px;
+}
+
+.heading-spacing-top {
+    padding-top: 2rem;
+}
+
+.heading-spacing-bottom{
+    padding-bottom: 2rem;
+}

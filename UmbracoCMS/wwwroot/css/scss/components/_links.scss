@@ -1,0 +1,23 @@
+a{
+    display: inline-block;
+    @include text;
+    font-size: 1em;
+    text-decoration: none;
+
+    &:hover{
+        text-decoration: underline;
+    }
+
+    &[target="_blank"]{
+
+        &::after{
+            content: '\f08e';
+            font-family: "Font Awesome 6 Pro";
+            font-size: 0.8em;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.4em;
+            margin-top: -0.9em;
+        }
+    }
+}

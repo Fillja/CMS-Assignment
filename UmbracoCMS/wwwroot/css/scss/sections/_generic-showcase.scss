@@ -1,0 +1,23 @@
+.generic-showcase {
+    padding: 6rem 3rem;
+    background-color: var(--color-gray);
+    color: var(--text-gray);
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+
+        .home-navigation {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .current-page{
+                color: var(--color-secondary);
+            }
+        }
+    }
+}

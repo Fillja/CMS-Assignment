@@ -1,0 +1,52 @@
+.services{
+    padding: 5rem 0;
+
+    .container{
+
+        .div-headline{
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .service-content{
+            display: grid;
+            justify-content: center;
+            gap: 2rem;
+
+            @include medium{
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include desktop{
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .service-box{
+                max-width: 370px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--color-light);
+                border: solid 1px var(--color-gray);
+
+                img{
+                    width: 100%;
+                }
+
+                h4, p{
+                    padding: 2rem;
+                }
+                
+                p{
+                    font-size: 14px;
+                }
+
+                &:hover{
+                    transition: 0.3s ease-in-out;
+                    opacity: 0.9;
+                    color: var(--color-dark);
+                    background-color: #d9c3a98c;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.about{
+    padding: 5rem 0;
+
+    .container{
+        display: flex;
+        gap: 3rem;
+
+        .about-image{
+            display: none;
+
+            @include medium{
+                display: inline;
+            }
+            
+            img{
+                margin-bottom: 1rem;
+            }
+        }
+
+        .about-text{
+
+            blockquote{
+                font-size: 20px;
+                font-weight: 300;
+            }
+
+            p{
+                font-size: 14px;
+                padding: 1rem 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+@include link-colors(--color-primary, --color-secondary);
+@include theme-links('primary', --color-light, --color-secondary);
+
+.active-link{
+    color: var(--color-secondary);
+}

@@ -5,9 +5,11 @@
 
 @{
     var headlineContent = Model?.Content.Value<string>("headlineContent");
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "heading-spacing-top" : "";
+    var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "heading-spacing-bottom" : "";
 }
 
 @if (!string.IsNullOrEmpty(headlineContent))
 {
-    <h3>@headlineContent</h3>
+    <h3 class="@spacingTopClass spacingBottomClass">@headlineContent</h3>
 }

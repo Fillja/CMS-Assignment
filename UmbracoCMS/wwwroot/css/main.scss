@@ -1,1 +1,87 @@
-﻿
+﻿@import "./scss/mixins/_mixins.scss";
+
+@import "./scss/colors/colors";
+@import "./scss/colors/base";
+@import "./scss/colors/links";
+@import "./scss/colors/buttons";
+@import "./scss/colors/headings";
+@import "./scss/colors/backgrounds";
+
+@import "./scss/misc/base";
+
+@import "./scss/components/buttons";
+@import "./scss/components/container";
+@import "./scss/components/links";
+@import "./scss/components/wrapper";
+@import "./scss/components/typography";
+@import "./scss/components/images";
+
+@import "./scss/sections/header-banner";
+@import "./scss/sections/header";
+@import "./scss/sections/footer.scss";
+@import "./scss/sections/contact-footer.scss";
+@import "./scss/sections/generic-showcase.scss";
+
+/*@import "./scss/sections/home/hero-section";
+@import "./scss/sections/home/about-us-section";
+@import "./scss/sections/home/services-section";
+@import "./scss/sections/home/choose-us-section.scss";
+@import "./scss/sections/home/success-section.scss";
+@import "./scss/sections/home/projects-section.scss";
+@import "./scss/sections/home/brands-section.scss";
+
+@import "./scss/sections/about/about-section";
+@import "./scss/sections/about/testimonial-section";
+@import "./scss/sections/about/our-team-section";
+
+@import "./scss/sections/services/precise-service";
+@import "./scss/sections/services/question-form";*/
+
+.umb-block-grid__layout-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--umb-block-grid--grid-columns, 1), minmax(0, 1fr));
+    grid-auto-flow: row;
+    grid-auto-rows: minmax(0, min-content);
+    column-gap: var(--umb-block-grid--column-gap, 0);
+    row-gap: var(--umb-block-grid--row-gap, 0);
+    gap: 1rem;
+}
+
+.umb-block-grid__layout-item {
+    position: relative;
+    /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
+    grid-column-end: span min(calc(var(--umb-block-grid--item-column-span, 1) * 3), var(--umb-block-grid--grid-columns));
+    grid-row: span var(--umb-block-grid--item-row-span, 1);
+}
+
+.umb-block-grid__area-container,
+.umb-block-grid__block--view::part(area-container) {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat( var(--umb-block-grid--area-grid-columns, var(--umb-block-grid--grid-columns, 1)), minmax(0, 1fr) );
+    grid-auto-flow: row;
+    grid-auto-rows: minmax(0, min-content);
+    column-gap: var(--umb-block-grid--areas-column-gap, 0);
+    row-gap: var(--umb-block-grid--areas-row-gap, 0);
+}
+
+.umb-block-grid__area {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
+    grid-column-end: span min(calc(var(--umb-block-grid--area-column-span, 1) * 3), var(--umb-block-grid--area-grid-columns));
+    grid-row: span var(--umb-block-grid--area-row-span, 1);
+}
+
+@media (min-width: 1024px) {
+    .umb-block-grid__layout-item {
+        grid-column-end: span min(var(--umb-block-grid--item-column-span, 1), var(--umb-block-grid--grid-columns));
+    }
+
+    .umb-block-grid__area {
+        grid-column-end: span min(var(--umb-block-grid--area-column-span, 1), var(--umb-block-grid--area-grid-columns));
+    }
+}

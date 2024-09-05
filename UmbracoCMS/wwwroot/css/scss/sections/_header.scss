@@ -1,0 +1,42 @@
+header{
+    @include tablet{
+        padding: 1.5rem 0;
+    }
+    padding: 1.5rem 1.5rem;
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .navigation-links{
+            display: none;
+
+            @include tablet{
+                display: flex; 
+                gap: 2rem;
+            }
+            
+            a{
+                font-weight: 600;
+            }
+        }
+        
+        .search-bar{
+            display: none;
+
+            @include tablet{
+                display: flex;
+            }
+        }
+
+        .burger-menu{
+            display: flex;
+            font-size: 24px;
+
+            @include tablet{
+                display: none;
+            }
+        }
+    }
+}

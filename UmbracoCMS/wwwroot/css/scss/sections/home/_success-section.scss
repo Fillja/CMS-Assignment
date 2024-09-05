@@ -1,0 +1,51 @@
+.success{
+    padding-top: 5rem;
+    
+    @include tablet{
+        background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(79,89,85,1) 19%);
+    }
+    
+    .container{
+        text-align: center;
+        position: relative;
+        
+        .dot-map{
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+
+        .statistics{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 5rem 0;
+
+            @include medium{
+                flex-direction: row;
+                gap: 0rem;
+            }
+
+            .statistic-box{
+                @include medium{
+                    max-width: 300px;
+                }
+
+                h3{
+                    font-size: 100px;
+                }
+            }
+        }
+
+        img{
+            display: none;
+            max-width: 100%;
+
+            @include tablet{
+                display: inline-block;
+            }
+        }
+
+    }
+}
