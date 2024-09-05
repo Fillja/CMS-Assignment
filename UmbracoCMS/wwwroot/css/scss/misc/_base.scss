@@ -26,29 +26,3 @@ body{
     font-size: 16px;
     color: #535656;
 }
-
-.spacing-top{
-    padding-top: 3rem;
-}
-
-.spacing-bottom {
-    padding-bottom: 3rem;
-}
-
-.center-content {
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-}
-
-.start-content {
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-
-    @include medium {
-        justify-content: start;
-        text-align: start;
-        align-items: start;
-    }
-}

@@ -1,13 +1,16 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 
 @{
     var paragraphContent = Model?.Content.Value<string>("paragraphContent");
+    var fontSize = Model?.Content.Value<string>("fontSize");
+    var fontColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("fontColor"))?.Label.ToLower() ?? "default";
 }
 
 @if (!string.IsNullOrEmpty(paragraphContent))
 {
-    <p>@paragraphContent</p>
+    <p class="font-@fontColor text-@fontSize">@paragraphContent</p>
 }

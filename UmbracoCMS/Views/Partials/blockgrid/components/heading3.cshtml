@@ -1,15 +1,17 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 
 @{
     var headlineContent = Model?.Content.Value<string>("headlineContent");
+    var fontColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("fontColor"))?.Label.ToLower() ?? "";
     var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "heading-spacing-top" : "";
     var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "heading-spacing-bottom" : "";
 }
 
 @if (!string.IsNullOrEmpty(headlineContent))
 {
-    <h3 class="@spacingTopClass spacingBottomClass">@headlineContent</h3>
+    <h3 class="@spacingTopClass @spacingBottomClass font-@fontColor">@headlineContent</h3>
 }

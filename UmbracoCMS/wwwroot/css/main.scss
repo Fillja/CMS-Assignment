@@ -5,6 +5,7 @@
 @import "./scss/colors/links";
 @import "./scss/colors/buttons";
 @import "./scss/colors/headings";
+@import "./scss/colors/typography";
 @import "./scss/colors/backgrounds";
 
 @import "./scss/misc/base";
@@ -22,21 +23,6 @@
 @import "./scss/sections/contact-footer.scss";
 @import "./scss/sections/generic-showcase.scss";
 
-/*@import "./scss/sections/home/hero-section";
-@import "./scss/sections/home/about-us-section";
-@import "./scss/sections/home/services-section";
-@import "./scss/sections/home/choose-us-section.scss";
-@import "./scss/sections/home/success-section.scss";
-@import "./scss/sections/home/projects-section.scss";
-@import "./scss/sections/home/brands-section.scss";
-
-@import "./scss/sections/about/about-section";
-@import "./scss/sections/about/testimonial-section";
-@import "./scss/sections/about/our-team-section";
-
-@import "./scss/sections/services/precise-service";
-@import "./scss/sections/services/question-form";*/
-
 .umb-block-grid__layout-container {
     position: relative;
     display: grid;
@@ -44,8 +30,7 @@
     grid-auto-flow: row;
     grid-auto-rows: minmax(0, min-content);
     column-gap: var(--umb-block-grid--column-gap, 0);
-    row-gap: var(--umb-block-grid--row-gap, 0);
-    gap: 1rem;
+    row-gap: var(--umb-block-grid--row-gap, 1.5rem);
 }
 
 .umb-block-grid__layout-item {

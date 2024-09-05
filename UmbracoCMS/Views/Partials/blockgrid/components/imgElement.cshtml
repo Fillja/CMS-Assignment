@@ -5,9 +5,11 @@
 @{
     var selectedImg = Model?.Content?.Value<IPublishedContent>("selectedImg")?.Url() ?? null;
     var imgDescription = Model?.Content.Value<string>("imgDescription") ?? "";
+    var hideWhenPhone = Model?.Content.Value<bool>("hideWhenPhone");
+    var hideClass = (hideWhenPhone == true) ? "desktop-image" : "";
 }
 
 @if (!string.IsNullOrEmpty(selectedImg))
 {
-    <img class="background-image" src="@selectedImg" alt="@imgDescription">
+    <img class="@hideClass" src="@selectedImg" alt="@imgDescription">
 }

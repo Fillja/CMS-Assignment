@@ -24,3 +24,30 @@
 .dynamic-container {
     padding: 3rem 0;
 }
+
+
+.spacing-top {
+    padding-top: 4rem;
+}
+
+.spacing-bottom {
+    padding-bottom: 4rem;
+}
+
+.center-content {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.start-content {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    @include medium {
+        justify-content: start;
+        text-align: start;
+        align-items: start;
+    }
+}
