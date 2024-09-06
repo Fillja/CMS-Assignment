@@ -14,9 +14,15 @@
     var backgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel)) ? $"bg-{sectionBackgroundColorLabel}" : "";
     
     var sectionBackgroundImage = Model?.Content?.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
+
+    var sectionGradientColor1 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor1"))?.Label.ToLower() ?? "";
+    var sectionGradientColor2 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor2"))?.Label.ToLower() ?? "";
+    var color1GradientPercentage = Model?.Content.Value<int>("color1GradientPercentage");
+    var color2GradientPercentage = Model?.Content.Value<int>("color2GradientPercentage");
+    var backgroundGradientClass = (Model!.Content.Value<bool>("sectionBackgroundGradient")) ? $"background: linear-gradient(0deg, var(--color-{@sectionGradientColor1}) {color1GradientPercentage}%, var(--color-{@sectionGradientColor2}) {color2GradientPercentage}%);" : "";
 }
 
-<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @backgroundColorClass">
+<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @backgroundColorClass" style="@backgroundGradientClass">
 
     @if(!string.IsNullOrEmpty(sectionBackgroundImage)){
         <img class="background-image" src="@sectionBackgroundImage" alt="@sectionTitle background-image">

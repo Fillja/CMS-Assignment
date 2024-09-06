@@ -7,11 +7,12 @@
 @{
     var headlineContent = Model?.Content.Value<string>("headlineContent");
     var fontColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("fontColor"))?.Label.ToLower() ?? "";
+    var hugeHeading = (Model!.Content.Value<bool>("hugeHeading")) ? "text-huge" : "";
     var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "heading-spacing-top" : "";
     var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "heading-spacing-bottom" : "";
 }
 
 @if (!string.IsNullOrEmpty(headlineContent))
 {
-    <h4 class="@spacingTopClass @spacingBottomClass font-@fontColor">@headlineContent</h4>
+    <h4 class="@spacingTopClass @spacingBottomClass font-@fontColor @hugeHeading">@headlineContent</h4>
 }

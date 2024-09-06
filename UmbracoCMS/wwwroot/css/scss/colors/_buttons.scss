@@ -22,6 +22,6 @@
     @include button-colors(--color-light, --color-primary, --color-accent, --color-primary, --color-primary);
 }
 
-.btn-menu{
-    @include button-colors(--color-primary, --color-secondary, --color-accent, --color-primary);
+.btn-menu {
+    @include button-colors(--color-primary, --color-primary, --color-accent, --color-primary);
 }
