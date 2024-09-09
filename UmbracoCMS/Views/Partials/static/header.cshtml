@@ -1,24 +1,49 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
 
 @{
     var rootContents = UmbracoHelper.ContentAtRoot();
     var settings = rootContents.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
     var siteName = settings?.Value<string>("siteName") ?? "";
     var siteLogotype = settings?.Value<IPublishedContent>("siteLogotype")?.Url() ?? "";
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
 }
 
 <header>
     <div class="container">
+
         <a href="/"><img src="@siteLogotype" alt="@siteName" class="logo"></a>
 
         <nav class="navigation-links">
+
+            @if (selection?.Length > 0)
+            {
+                @foreach (var item in selection)
+                {
+                    <a class="@(item.IsAncestorOrSelf(Model) ? "active-link" : null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                }
+            }
+
         </nav>
 
         <div class="search-bar">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
+
         <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
+
     </div>
 </header>
+
+
+
+
+
+

@@ -1,25 +1,31 @@
-.header-banner{
+.header-banner {
 
-    .container{
+    .container {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
 
-        @include tablet{
+        @include tablet {
             flex-direction: row;
             gap: 0rem;
         }
 
-        .banner-socials{
+        .banner-socials {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
 
-            .horizontal-divider{
+            .social-button {
+                padding: 0 1.5rem;
+                align-content: center;
                 height: 3rem;
-                border: solid 1px var(--color-primary-light);
+                border-left: solid 2px var(--color-primary-light);
+
+                &:last-child {
+                    border-left: solid 2px var(--color-primary-light);
+                    border-right: solid 2px var(--color-primary-light);
+                }
             }
         }
     }

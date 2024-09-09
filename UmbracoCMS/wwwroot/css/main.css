@@ -309,6 +309,52 @@ body {
   color: #535656;
 }
 
+.umb-block-grid__layout-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--umb-block-grid--grid-columns, 1), minmax(0, 1fr));
+  grid-auto-flow: row;
+  grid-auto-rows: minmax(0, min-content);
+  column-gap: var(--umb-block-grid--column-gap, 0);
+  row-gap: var(--umb-block-grid--row-gap, 1.5rem);
+}
+
+.umb-block-grid__layout-item {
+  position: relative;
+  /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
+  grid-column-end: span min(var(--umb-block-grid--item-column-span, 1) * 3, var(--umb-block-grid--grid-columns));
+  grid-row: span var(--umb-block-grid--item-row-span, 1);
+}
+
+.umb-block-grid__area-container,
+.umb-block-grid__block--view::part(area-container) {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--umb-block-grid--area-grid-columns, var(--umb-block-grid--grid-columns, 1)), minmax(0, 1fr));
+  grid-auto-flow: row;
+  grid-auto-rows: minmax(0, min-content);
+  column-gap: var(--umb-block-grid--areas-column-gap, 0);
+  row-gap: var(--umb-block-grid--areas-row-gap, 0);
+}
+
+.umb-block-grid__area {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
+  grid-column-end: span min(var(--umb-block-grid--area-column-span, 1) * 3, var(--umb-block-grid--area-grid-columns));
+  grid-row: span var(--umb-block-grid--area-row-span, 1);
+}
+
+@media (min-width: 1024px) {
+  .umb-block-grid__layout-item {
+    grid-column-end: span min(var(--umb-block-grid--item-column-span, 1), var(--umb-block-grid--grid-columns));
+  }
+  .umb-block-grid__area {
+    grid-column-end: span min(var(--umb-block-grid--area-column-span, 1), var(--umb-block-grid--area-grid-columns));
+  }
+}
 .btn-dark, .btn-primary, .btn-secondary, .btn-accent, .btn-gray, .btn-light {
   display: inline-block;
   cursor: pointer;
@@ -428,15 +474,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-a[target=_blank]::after {
-  content: "\f08e";
-  font-family: "Font Awesome 6 Pro";
-  font-size: 0.8em;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 0.4em;
-  margin-top: -0.9em;
-}
 
 .wrapper {
   display: grid;
@@ -516,7 +553,6 @@ blockquote {
     display: block;
     position: absolute;
     width: 100%;
-    height: 100%;
   }
 }
 
@@ -528,6 +564,10 @@ blockquote {
   .desktop-image {
     display: block;
   }
+}
+
+.scaleable-image {
+  width: 100%;
 }
 
 .header-banner .container {
@@ -546,11 +586,16 @@ blockquote {
 .header-banner .container .banner-socials {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
 }
-.header-banner .container .banner-socials .horizontal-divider {
+.header-banner .container .banner-socials .social-button {
+  padding: 0 1.5rem;
+  align-content: center;
   height: 3rem;
-  border: solid 1px var(--color-primary-light);
+  border-left: solid 2px var(--color-primary-light);
+}
+.header-banner .container .banner-socials .social-button:last-child {
+  border-left: solid 2px var(--color-primary-light);
+  border-right: solid 2px var(--color-primary-light);
 }
 
 header {
@@ -704,49 +749,10 @@ footer {
   color: var(--color-secondary);
 }
 
-.umb-block-grid__layout-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(var(--umb-block-grid--grid-columns, 1), minmax(0, 1fr));
-  grid-auto-flow: row;
-  grid-auto-rows: minmax(0, min-content);
-  column-gap: var(--umb-block-grid--column-gap, 0);
-  row-gap: var(--umb-block-grid--row-gap, 1.5rem);
-}
-
-.umb-block-grid__layout-item {
-  position: relative;
-  /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
-  grid-column-end: span min(var(--umb-block-grid--item-column-span, 1) * 3, var(--umb-block-grid--grid-columns));
-  grid-row: span var(--umb-block-grid--item-row-span, 1);
-}
-
-.umb-block-grid__area-container,
-.umb-block-grid__block--view::part(area-container) {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(var(--umb-block-grid--area-grid-columns, var(--umb-block-grid--grid-columns, 1)), minmax(0, 1fr));
-  grid-auto-flow: row;
-  grid-auto-rows: minmax(0, min-content);
-  column-gap: var(--umb-block-grid--areas-column-gap, 0);
-  row-gap: var(--umb-block-grid--areas-row-gap, 0);
-}
-
-.umb-block-grid__area {
-  position: relative;
+#hero-slider .background-image {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
-  grid-column-end: span min(var(--umb-block-grid--area-column-span, 1) * 3, var(--umb-block-grid--area-grid-columns));
-  grid-row: span var(--umb-block-grid--area-row-span, 1);
 }
 
-@media (min-width: 1024px) {
-  .umb-block-grid__layout-item {
-    grid-column-end: span min(var(--umb-block-grid--item-column-span, 1), var(--umb-block-grid--grid-columns));
-  }
-  .umb-block-grid__area {
-    grid-column-end: span min(var(--umb-block-grid--area-column-span, 1), var(--umb-block-grid--area-grid-columns));
-  }
+.image-slider .slide-item {
+  margin: 0 1rem;
 }

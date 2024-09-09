@@ -5,11 +5,15 @@
 @{
     var selectedImg = Model?.Content?.Value<IPublishedContent>("selectedImg")?.Url() ?? null;
     var imgDescription = Model?.Content.Value<string>("imgDescription") ?? "";
+
     var hideWhenPhone = Model?.Content.Value<bool>("hideWhenPhone");
     var hideClass = (hideWhenPhone == true) ? "desktop-image" : "";
+
+    var autoScaling = Model?.Content.Value<bool>("autoScaling");
+    var scaleableClass = (autoScaling == true) ? "scaleable-image" : "";
 }
 
 @if (!string.IsNullOrEmpty(selectedImg))
 {
-    <img class="@hideClass" src="@selectedImg" alt="@imgDescription">
+    <img class="@hideClass @scaleableClass" src="@selectedImg" alt="@imgDescription">
 }
