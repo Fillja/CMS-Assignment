@@ -1,0 +1,80 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+    var selection = Umbraco.Content(Guid.Parse("38b97898-2dbe-437c-a7a0-411a7e955d27"))
+    .ChildrenOfType("serviceItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var itemsPerPage = 6;
+
+    if(!int.TryParse(Context.Request.Query["page"], out int currentPage))
+        currentPage = 1;
+
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+}
+
+@await Html.PartialAsync("partials/static/generic-breadcrumb.cshtml")
+
+<section id="our-services">
+    <div class="container">
+        @if(!string.IsNullOrEmpty(Model.Value("customHeadline").ToString()))
+        {
+            <div class="headline">
+                <h2>@Model.Value("customHeadline")</h2>
+            </div>
+        }
+        <div class="services">
+            @if(pagedItems != null)
+            {
+                @foreach(var item in pagedItems)
+                {
+                    var image = item?.Value<IPublishedContent>("thumbnailImg")?.Url() ?? "";
+                    var thumbnailText = item?.Value<string>("thumbnailText") ?? "";
+
+                    <a href="@item.Url()">
+                        <div class="service-box">
+                            <h4>@item.Name</h4>
+                            <img src="@image">
+                            <p>@thumbnailText</p>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="pagination">
+    <div class="container">
+
+        @if(currentPage > 1)
+        {
+            <a href="?page=@(currentPage -1)" class="change">PREV</a>
+        }
+        else
+        {
+            <span class="change inactive">PREV</span>       
+        }
+
+        <div class="pages">
+            @for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++)
+            {
+                <a href="?page=@i" class="@((i == currentPage) ? "number active" : "number")">@i</a>
+            }
+        </div>
+        
+        @if(currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage))
+        {
+            <a class="change" href="?page=@(currentPage + 1)">NEXT</a>
+        }
+        else
+        {
+            <span class="change inactive">NEXT</span>
+        }
+
+    </div>
+</section>
