@@ -819,81 +819,52 @@ footer {
   transform: scale(1.1);
 }
 
-.service-details {
+.article-details {
   padding: 5rem 0;
 }
-.service-details .container {
+.article-details .container {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
 @media (min-width: 1400px) {
-  .service-details .container {
+  .article-details .container {
     flex-direction: row;
   }
 }
-.service-details .container .service-content span {
+.article-details .container .article-content {
+  max-width: 800px;
+}
+.article-details .container .article-content span {
   color: var(--color-default);
 }
-.service-details .container .service-content li::marker {
+.article-details .container .article-content li::marker {
   color: var(--color-secondary);
 }
-.service-details .container .service-content img {
+.article-details .container .article-content img {
   margin: 2rem 0;
 }
-.service-details .container #service-aside {
-  display: none;
-  border-right: solid 1px var(--color-border-gray);
-  padding-right: 3rem;
-}
-@media (min-width: 1400px) {
-  .service-details .container #service-aside {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    gap: 3rem;
-  }
-}
-.service-details .container #service-aside .aside-content {
-  font-size: 14px;
-  max-width: 330px;
-}
-.service-details .container #service-aside .aside-content img {
-  margin: 1rem 0;
-}
-.service-details .container #service-aside .aside-support {
-  position: relative;
+.article-details .container .article-content .article-img-text {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem;
-  border-radius: 6px;
+  gap: 1rem;
+  align-items: center;
 }
-.service-details .container #service-aside .aside-support h4 {
-  font-weight: 500;
+@media (min-width: 992px) {
+  .article-details .container .article-content .article-img-text {
+    flex-direction: row;
+  }
 }
-.service-details .container #service-aside .aside-support .email-input {
-  background-color: var(--color-light);
+.article-details .container .article-content .article-tags {
   display: flex;
-  justify-content: space-between;
-  padding: 0.8rem;
-  border-radius: 6px;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
 }
-.service-details .container #service-aside .aside-support .email-input input {
-  background-color: transparent;
-  border: none;
-  width: 100%;
-}
-.service-details .container #service-aside .aside-support .email-input input::placeholder {
-  font-style: italic;
-}
-.service-details .container #service-aside .aside-support .email-input i {
-  color: var(--color-primary);
-}
-.service-details .container #service-aside .aside-support .mail-background {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.article-details .container .article-content .article-tags p {
+  background-color: var(--color-secondary);
+  padding: 0.6rem;
+  border-radius: 20px;
 }
 
 #our-projects {
@@ -943,22 +914,44 @@ footer {
 #our-projects .container .projects .project-box .project-text .read-more i {
   margin-left: 0.5rem;
 }
-#our-projects .container #project-aside {
+
+#service-aside {
+  display: none;
+  border-right: solid 1px var(--color-border-gray);
+  padding-right: 3rem;
+}
+@media (min-width: 1400px) {
+  #service-aside {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 3rem;
+  }
+}
+#service-aside .aside-content {
+  font-size: 14px;
+  max-width: 330px;
+}
+#service-aside .aside-content img {
+  margin: 1rem 0;
+}
+
+#project-aside {
   display: none;
   border-left: solid 1px var(--color-border-gray);
   padding-left: 3rem;
 }
 @media (min-width: 1400px) {
-  #our-projects .container #project-aside {
+  #project-aside {
     display: flex;
     flex-direction: column;
     gap: 3rem;
   }
 }
-#our-projects .container #project-aside .aside-content {
+#project-aside .aside-content {
   font-size: 14px;
 }
-#our-projects .container #project-aside .aside-content .tags {
+#project-aside .aside-content .tags {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -966,16 +959,17 @@ footer {
   align-items: center;
   margin-top: 1rem;
 }
-#our-projects .container #project-aside .aside-content .tags p {
+#project-aside .aside-content .tags p {
   padding: 0.6rem;
   border: solid 1px var(--color-dark);
   border-radius: 20px;
 }
-#our-projects .container #project-aside .aside-content .tags p:hover {
+#project-aside .aside-content .tags p:hover {
   transition: 0.3s ease-in-out;
   background-color: var(--color-secondary);
 }
-#our-projects .container #project-aside .aside-support {
+
+.aside-support {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -983,28 +977,28 @@ footer {
   padding: 1.5rem;
   border-radius: 6px;
 }
-#our-projects .container #project-aside .aside-support h4 {
+.aside-support h4 {
   font-weight: 500;
 }
-#our-projects .container #project-aside .aside-support .email-input {
+.aside-support .email-input {
   background-color: var(--color-light);
   display: flex;
   justify-content: space-between;
   padding: 0.8rem;
   border-radius: 6px;
 }
-#our-projects .container #project-aside .aside-support .email-input input {
+.aside-support .email-input input {
   background-color: transparent;
   border: none;
   width: 100%;
 }
-#our-projects .container #project-aside .aside-support .email-input input::placeholder {
+.aside-support .email-input input::placeholder {
   font-style: italic;
 }
-#our-projects .container #project-aside .aside-support .email-input i {
+.aside-support .email-input i {
   color: var(--color-primary);
 }
-#our-projects .container #project-aside .aside-support .mail-background {
+.aside-support .mail-background {
   position: absolute;
   bottom: 0;
   right: 0;

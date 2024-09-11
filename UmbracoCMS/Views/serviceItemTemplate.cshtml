@@ -6,10 +6,10 @@
 }
 @await Html.PartialAsync("partials/static/generic-breadcrumb.cshtml")
 
-<section class="service-details">
+<section class="article-details">
     <div class="container">
         @await Html.PartialAsync("partials/static/service-aside.cshtml")
-        <div class="service-content">
+        <div class="article-content">
             @Model.Value("pageContent")
         </div>
     </div>

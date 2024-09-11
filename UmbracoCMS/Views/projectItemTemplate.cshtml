@@ -7,21 +7,25 @@
 }
 @await Html.PartialAsync("partials/static/generic-breadcrumb.cshtml")
 
-<section class="project-details">
+<section class="article-details">
     <div class="container">
-        <div class="project-content">
+        <div class="article-content">
             @Model.Value("pageContent")
+
+            @if(projectCategories != null)
+            {
+                <div class="article-tags">
+                    <h4>Tags:</h4>
+                    @foreach(var category in projectCategories)
+                    {
+                        <p>@category</p>
+                    }
+                </div>
+            }
         </div>
 
-        @if(projectCategories != null)
-        {
-            <div class="tags">
-                @foreach(var category in projectCategories)
-                {
-                    <p>@category</p>
-                }
-            </div>
-        }
+        @await Html.PartialAsync("partials/static/projects-aside.cshtml")
+
 
     </div>
 </section>
