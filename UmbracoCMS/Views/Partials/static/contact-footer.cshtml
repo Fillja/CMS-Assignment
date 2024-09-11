@@ -1,0 +1,64 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var officeEmailAddress = settings?.Value<string>("officeEmailAddress") ?? "";
+    var officePhoneNumber = settings?.Value<string>("officePhoneNumber") ?? "";
+
+    var contactManImg = Umbraco.Media(Guid.Parse("fe2fb8d6-9651-4354-9115-d86a3c42e939")) as Image;
+    var backgroundImg = Umbraco.Media(Guid.Parse("3edba493-2f94-407a-b666-246cbd7f3bcd")) as Image;
+    var dotImg = Umbraco.Media(Guid.Parse("434e8b11-be7a-4ca9-817d-0f4f444ce662")) as Image;
+}
+
+
+<section class="contact-footer">
+    <div class="container">
+
+        <div class="contact-image">
+            <img id="contact-man" src="@contactManImg.Url()" alt="Smiling man with crossed arms">
+            <img id="bg-img" src="@backgroundImg.Url()" alt="Green square background">
+            <img id="dot-img" src="@dotImg.Url()" alt="Dotted background">
+        </div>
+
+        <div class="contact-content">
+            <h2>Let us know about <br> your next project</h2>
+            
+            <a href="#">
+                <div class="contact-row">
+                    <div class="icon-text">
+                        <i class="fa-light fa-location-dot"></i>
+                        <h5>Office Location</h5>
+                    </div>
+                    <p>@officeLocation</p>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="contact-row">
+                    <div class="icon-text">
+                        <i class="fa-light fa-phone-flip"></i>
+                        <h5>Phone Number</h5>
+                    </div>
+                    <p><i>@officePhoneNumber</i></p>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="contact-row">
+                    <div class="icon-text">
+                        <i class="fa-light fa-envelope"></i>
+                        <h5>E-mail address</h5>
+                    </div>
+                    <p>@officeEmailAddress</p>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>

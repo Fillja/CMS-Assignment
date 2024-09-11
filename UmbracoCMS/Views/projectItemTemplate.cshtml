@@ -3,15 +3,26 @@
 @{
 	Layout = "mainLayout.cshtml";
 	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+    var projectCategories = Model?.Value<IEnumerable<string>>("projectCategories");
 }
 @await Html.PartialAsync("partials/static/generic-breadcrumb.cshtml")
 
-<section class="service-details">
+<section class="project-details">
     <div class="container">
-        @await Html.PartialAsync("partials/static/service-aside.cshtml")
-        <div class="service-content">
+        <div class="project-content">
             @Model.Value("pageContent")
         </div>
+
+        @if(projectCategories != null)
+        {
+            <div class="tags">
+                @foreach(var category in projectCategories)
+                {
+                    <p>@category</p>
+                }
+            </div>
+        }
+
     </div>
 </section>
 

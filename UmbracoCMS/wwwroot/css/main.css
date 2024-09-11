@@ -820,7 +820,7 @@ footer {
 }
 
 .service-details {
-  padding-top: 5rem 0;
+  padding: 5rem 0;
 }
 .service-details .container {
   display: flex;
@@ -891,6 +891,120 @@ footer {
   color: var(--color-primary);
 }
 .service-details .container #service-aside .aside-support .mail-background {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#our-projects {
+  padding: 5rem 0;
+}
+#our-projects .container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+@media (min-width: 1400px) {
+  #our-projects .container {
+    flex-direction: row;
+  }
+}
+#our-projects .container .projects {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+}
+#our-projects .container .projects .project-box {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: solid 1px var(--color-border-gray);
+}
+#our-projects .container .projects .project-box img {
+  width: 100%;
+}
+#our-projects .container .projects .project-box .project-text {
+  display: flex;
+  flex-direction: column;
+}
+#our-projects .container .projects .project-box .project-text .project-headline {
+  padding-bottom: 1rem;
+}
+#our-projects .container .projects .project-box .project-text .project-headline .project-date {
+  font-weight: 200;
+}
+#our-projects .container .projects .project-box .project-text .project-headline .project-date i {
+  margin-right: 0.5rem;
+}
+#our-projects .container .projects .project-box .project-text .read-more {
+  font-weight: 600;
+  padding-top: 3rem;
+}
+#our-projects .container .projects .project-box .project-text .read-more i {
+  margin-left: 0.5rem;
+}
+#our-projects .container #project-aside {
+  display: none;
+  border-left: solid 1px var(--color-border-gray);
+  padding-left: 3rem;
+}
+@media (min-width: 1400px) {
+  #our-projects .container #project-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+#our-projects .container #project-aside .aside-content {
+  font-size: 14px;
+}
+#our-projects .container #project-aside .aside-content .tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+#our-projects .container #project-aside .aside-content .tags p {
+  padding: 0.6rem;
+  border: solid 1px var(--color-dark);
+  border-radius: 20px;
+}
+#our-projects .container #project-aside .aside-content .tags p:hover {
+  transition: 0.3s ease-in-out;
+  background-color: var(--color-secondary);
+}
+#our-projects .container #project-aside .aside-support {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+#our-projects .container #project-aside .aside-support h4 {
+  font-weight: 500;
+}
+#our-projects .container #project-aside .aside-support .email-input {
+  background-color: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border-radius: 6px;
+}
+#our-projects .container #project-aside .aside-support .email-input input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+}
+#our-projects .container #project-aside .aside-support .email-input input::placeholder {
+  font-style: italic;
+}
+#our-projects .container #project-aside .aside-support .email-input i {
+  color: var(--color-primary);
+}
+#our-projects .container #project-aside .aside-support .mail-background {
   position: absolute;
   bottom: 0;
   right: 0;

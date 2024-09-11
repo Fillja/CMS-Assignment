@@ -1,0 +1,65 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    var selection = Umbraco.Content(Guid.Parse("38b97898-2dbe-437c-a7a0-411a7e955d27"))
+    .ChildrenOfType("serviceItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+    var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
+
+    var upperHeadingContent = Model?.Content.Value<string>("upperHeadingContent");
+    var lowerHeadingContent = Model?.Content.Value<string>("lowerHeadingContent");
+
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "spacing-top" : "";
+    var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
+
+    var sectionBackgroundColorLabel = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionBackgroundColor"))?.Label.ToLower() ?? null;
+    var backgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel)) ? $"bg-{sectionBackgroundColorLabel}" : "";
+
+    var sectionGradientColor1 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor1"))?.Label.ToLower() ?? "";
+    var sectionGradientColor2 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor2"))?.Label.ToLower() ?? "";
+    var color1GradientPercentage = Model?.Content.Value<int>("color1GradientPercentage");
+    var color2GradientPercentage = Model?.Content.Value<int>("color2GradientPercentage");
+    var backgroundGradientClass = (Model!.Content.Value<bool>("sectionBackgroundGradient")) ? $"background: linear-gradient(0deg, var(--color-{@sectionGradientColor1}) {color1GradientPercentage}%, var(--color-{@sectionGradientColor2}) {color2GradientPercentage}%);" : "";
+}
+
+<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @backgroundColorClass" style="@backgroundGradientClass">
+    
+    <div class="container">
+
+        <div class="headline">
+            @if (!string.IsNullOrEmpty(upperHeadingContent) && !string.IsNullOrEmpty(lowerHeadingContent))
+            {
+                <h6>@upperHeadingContent</h6>
+                <h2>@lowerHeadingContent</h2>
+            }
+        </div>
+
+        <div class="services">
+            @if(selection != null)
+            {
+                @for(int i = 0; i < 6; i++)
+                {
+                    var item = selection.ElementAt(i);
+
+                    var image = item?.Value<IPublishedContent>("thumbnailImg")?.Url() ?? "";
+                    var thumbnailText = item?.Value<string>("thumbnailText") ?? "";
+
+                    <a href="@item.Url()">
+                        <div class="service-box">
+                            <h4>@item.Name</h4>
+                            <img src="@image">
+                            <p>@thumbnailText</p>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+            
+    </div>
+
+</section>
