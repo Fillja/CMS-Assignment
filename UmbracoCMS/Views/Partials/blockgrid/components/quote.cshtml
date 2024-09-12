@@ -1,13 +1,16 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 
 @{
     var quoteContent = Model?.Content.Value<string>("quoteContent");
+    var fontSize = Model?.Content.Value<string>("fontSize");
+    var fontColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("fontColor"))?.Label.ToLower() ?? "default";
 }
 
 @if (!string.IsNullOrEmpty(quoteContent))
 {
-    <blockquote>@quoteContent</blockquote>
+    <blockquote class="font-@fontColor text-@fontSize">@quoteContent</blockquote>
 }

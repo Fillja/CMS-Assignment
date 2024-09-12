@@ -4,9 +4,10 @@
 @using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 @{
-    var selection = Umbraco.Content(Guid.Parse("38b97898-2dbe-437c-a7a0-411a7e955d27"))
-    .ChildrenOfType("serviceItemTemplate")
-    .Where(x => x.IsVisible());
+	var selection = Umbraco.Content(Guid.Parse("b192c7ef-3cb4-4911-ad7a-90097ca6acda"))
+    .ChildrenOfType("projectItemTemplate")
+    .Where(x => x.IsVisible())
+    .Take(4);
 
     var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
     var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
@@ -27,7 +28,7 @@
     var backgroundGradientClass = (Model!.Content.Value<bool>("sectionBackgroundGradient")) ? $"background: linear-gradient(0deg, var(--color-{@sectionGradientColor1}) {color1GradientPercentage}%, var(--color-{@sectionGradientColor2}) {color2GradientPercentage}%);" : "";
 }
 
-<section id="our-services" class="@spacingTopClass @spacingBottomClass @backgroundColorClass" style="@backgroundGradientClass">
+<section id="home-projects" class="@spacingTopClass @spacingBottomClass @backgroundColorClass" style="@backgroundGradientClass">
     
     <div class="container">
 
@@ -38,28 +39,29 @@
                 <h2>@lowerHeadingContent</h2>
             }
         </div>
-
-        <div class="services">
-            @if(selection != null)
-            {
-                @for(int i = 0; i < 6; i++)
-                {
-                    var item = selection.ElementAt(i);
-
-                    var image = item?.Value<IPublishedContent>("thumbnailImg")?.Url() ?? "";
-                    var thumbnailText = item?.Value<string>("thumbnailText") ?? "";
-
-                    <a href="@item.Url()">
-                        <div class="service-box">
-                            <h4>@item.Name</h4>
-                            <img src="@image">
-                            <p>@thumbnailText</p>
-                        </div>
-                    </a>
-                }
-            }
-        </div>
             
+    </div>
+
+    <div class="project-slider">
+
+        @foreach(var item in selection)
+        {
+            var thumbnailImg = item?.Value<IPublishedContent>("thumbnailImg")?.Url() ?? "";
+            var projectCategory = item?.Value<string>("projectCategory") ?? "";
+            var pageTitle = item?.Value<string>("pageTitle") ?? "";
+
+            <a href="@item.Url()" class="project-box">
+                <img src="@thumbnailImg" alt="">
+                <div class="project-text">
+                    <div class="project-banner">
+                        <h5>@pageTitle</h5>
+                        <p>@projectCategory</p>
+                    </div>
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            </a>
+        }
+        
     </div>
 
 </section>

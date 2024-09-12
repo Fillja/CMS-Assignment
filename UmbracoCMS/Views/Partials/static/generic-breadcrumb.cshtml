@@ -1,7 +1,9 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using Umbraco.Cms.Core.Routing
 @using Umbraco.Extensions
+@using Umbraco.Cms.Web.Common.PublishedModels;
 
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @inject IPublishedUrlProvider PublishedUrlProvider
 
 @{
@@ -11,10 +13,20 @@
     {
         pageTitle = ViewBag.Title;
     }
+    
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+
+    var rightBackgroundImg = settings?.Value<IPublishedContent>("rightBackgroundImg")?.Url() ?? "";
+    var leftBackgroundImg = settings?.Value<IPublishedContent>("leftBackgroundImg")?.Url() ?? "";
 }
 
 
 <section class="generic-breadcrumb">
+    
+    <img class="right-background-image" src="@rightBackgroundImg">
+    <img class="left-background-image" src="@leftBackgroundImg">
+
     <div class="container">
         <h1>@pageTitle</h1>
 

@@ -25,6 +25,21 @@
     padding: 3rem 0;
 }
 
+.spacing-left {
+    padding-left: 0;
+
+    @include tablet {
+        padding-left: 2rem;
+    }
+}
+
+.spacing-right {
+    padding-right: 0;
+
+    @include tablet {
+        padding-right: 2rem;
+    }
+}
 
 .spacing-top {
     padding-top: 2rem;

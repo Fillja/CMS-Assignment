@@ -3,7 +3,7 @@
 @{
 	Layout = "mainLayout.cshtml";
 	ViewBag.Title = Model?.Value("pageTitle") ?? null;
-    var projectCategories = Model?.Value<IEnumerable<string>>("projectCategories");
+    var projectTags = Model?.Value<IEnumerable<string>>("projectTags");
 }
 @await Html.PartialAsync("partials/static/generic-breadcrumb.cshtml")
 
@@ -12,13 +12,13 @@
         <div class="article-content">
             @Model.Value("pageContent")
 
-            @if(projectCategories != null)
+            @if(projectTags != null)
             {
                 <div class="article-tags">
                     <h4>Tags:</h4>
-                    @foreach(var category in projectCategories)
+                    @foreach(var tag in projectTags)
                     {
-                        <p>@category</p>
+                        <p>@tag</p>
                     }
                 </div>
             }
@@ -29,5 +29,4 @@
 
     </div>
 </section>
-
 @await Html.PartialAsync("partials/static/contact-footer.cshtml")

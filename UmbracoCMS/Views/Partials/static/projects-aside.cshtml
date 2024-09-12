@@ -23,21 +23,21 @@
         <h4>Tags</h4>
         <div class="tags">
             @{
-                var renderedCategories = new HashSet<string>();
+                var renderedTags = new HashSet<string>();
             }
 
             @foreach (var item in selection)
             {
-                var projectCategories = item?.Value<IEnumerable<string>>("projectCategories");
+                var projectTags = item?.Value<IEnumerable<string>>("projectTags");
 
-                if (projectCategories != null)
+                if (projectTags != null)
                 {
-                    foreach (var category in projectCategories)
+                    foreach (var tag in projectTags)
                     {
-                        if (!renderedCategories.Contains(category))
+                        if (!renderedTags.Contains(tag))
                         {
-                            <p>@category</p>
-                            renderedCategories.Add(category);
+                            <p>@tag</p>
+                            renderedTags.Add(tag);
                         }
                     }
                 }
