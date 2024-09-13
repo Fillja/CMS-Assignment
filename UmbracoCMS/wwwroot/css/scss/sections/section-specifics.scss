@@ -25,6 +25,42 @@
     }
 }
 
+#our-team {
+
+    .umb-block-grid__layout-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+
+        @include medium{
+            display: grid;
+        }
+    }
+}
+
+.employee-card {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px var(--color-border-light);
+
+    img {
+        max-width: 100%;
+    }
+
+    .card-text {
+        padding: 1.5rem;
+        white-space: nowrap;
+
+        p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
 #our-services {
     padding-top: 5rem;
 
@@ -321,6 +357,44 @@
 
     .aside-content {
         font-size: 14px;
+
+        .recent-projects {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            padding: 1rem 0;
+            gap: 1rem;
+
+            .recent-project-box {
+                display: flex;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                max-width: 300px;
+                border-bottom: solid 1px var(--color-border-gray);
+
+
+                h6 {
+                    color: var(--color-default);
+                    width: 100px;
+                }
+
+                img {
+                    height: 100px;
+                    width: 200px;
+                }
+
+                &:hover {
+                    transition: 0.3s ease-in-out;
+                    opacity: 0.9;
+
+                    img {
+                        transition: 0.3s ease-in-out;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
 
         .tags {
             display: grid;

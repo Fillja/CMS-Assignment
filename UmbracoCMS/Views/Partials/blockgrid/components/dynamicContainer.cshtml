@@ -5,11 +5,13 @@
 @{
     var centerContentClass = Model!.Content.Value<bool>("centerContent") ? "center-content" : "";
     var startContentClass = Model!.Content.Value<bool>("contentAtStartDesktop") ? "start-content" : "";
-    var spacingLeft = Model!.Content.Value<bool>("spacingLeft") ? "spacing-left" : "";
-    var spacingRight = Model!.Content.Value<bool>("spacingRight") ? "spacing-right" : "";   
+    var addSpaceLeft = Model!.Content.Value<bool>("addSpaceLeft") ? "spacing-left" : "";
+    var addSpaceRight = Model!.Content.Value<bool>("addSpaceRight") ? "spacing-right" : "";   
+    var addSpaceToTop = Model!.Content.Value<bool>("addSpaceToTop") ? "spacing-top" : "";   
+    var addSpaceToBottom = Model!.Content.Value<bool>("addSpaceToBottom") ? "spacing-bottom" : "";   
 }
 
-<div class="dynamic-container @centerContentClass @startContentClass @spacingLeft @spacingRight">
+<div class="dynamic-container @centerContentClass @startContentClass @addSpaceLeft @addSpaceRight @addSpaceToTop @addSpaceToBottom">
     @await Html.GetBlockGridItemAreasHtmlAsync(Model)
 </div>
 

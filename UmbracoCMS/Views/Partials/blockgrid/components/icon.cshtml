@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@using System.Text.RegularExpressions;
+
+@{
+    var iconAmount = Model?.Content.Value<int>("iconAmount");
+    var iconColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("iconColor"))?.Label.ToLower() ?? "default";
+    var fontawesomeLink = Model?.Content.Value<string>("fontawesomeLink").Substring(3,33);
+
+    string regEx = "class\\s*=\\s*\"([^\"]+)\"";
+    Match match = Regex.Match(fontawesomeLink!, regEx);
+    var fontawesomeIcon = match.Groups[1].Value;
+}
+
+<div class="icon-div">
+
+    @for(int i = 0; i < iconAmount; i++){
+        <i class=" font-@iconColor @fontawesomeIcon"></i>
+    }
+    
+</div>

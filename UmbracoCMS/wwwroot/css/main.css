@@ -323,10 +323,12 @@ body {
 section .umb-block-grid__layout-container {
   row-gap: var(--umb-block-grid--row-gap, 1.5rem);
 }
+section .umb-block-grid__layout-container .no-gap .umb-block-grid__layout-container {
+  row-gap: var(--umb-block-grid--row-gap, 0);
+}
 
 .umb-block-grid__layout-item {
   position: relative;
-  /* For small devices we scale columnSpan by three, to make everything bigger than 1/3 take full width: */
   grid-column-end: span min(var(--umb-block-grid--item-column-span, 1) * 3, var(--umb-block-grid--grid-columns));
   grid-row: span var(--umb-block-grid--item-row-span, 1);
 }
@@ -416,7 +418,7 @@ section .umb-block-grid__layout-container {
     max-width: 720px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .container {
     max-width: 900px;
   }
@@ -425,10 +427,6 @@ section .umb-block-grid__layout-container {
   .container {
     max-width: 1200px;
   }
-}
-
-.dynamic-container {
-  padding: 3rem 0;
 }
 
 .spacing-left {
@@ -478,7 +476,7 @@ section .umb-block-grid__layout-container {
   text-align: center;
   align-items: center;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .start-content {
     justify-content: start;
     text-align: start;
@@ -571,7 +569,7 @@ blockquote {
 .background-image {
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .background-image {
     display: block;
     position: absolute;
@@ -581,7 +579,7 @@ blockquote {
 
 .desktop-image {
   display: none;
-  width: 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .desktop-image {
@@ -590,7 +588,7 @@ blockquote {
 }
 
 .scaleable-image {
-  width: 100%;
+  max-width: 100%;
 }
 
 .header-banner .container {
@@ -675,7 +673,7 @@ footer {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .contact-footer {
     padding-bottom: 0;
   }
@@ -684,7 +682,7 @@ footer {
   display: flex;
   justify-content: center;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .contact-footer .container {
     justify-content: space-between;
   }
@@ -696,7 +694,7 @@ footer {
 .contact-footer .container .contact-image #contact-man {
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .contact-footer .container .contact-image #contact-man {
     display: inline;
   }
@@ -708,7 +706,7 @@ footer {
   bottom: 0;
   left: 0;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .contact-footer .container .contact-image #bg-img {
     display: inline;
   }
@@ -809,6 +807,37 @@ footer {
   width: 80%;
 }
 
+#our-team .umb-block-grid__layout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 1024px) {
+  #our-team .umb-block-grid__layout-container {
+    display: grid;
+  }
+}
+
+.employee-card {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px var(--color-border-light);
+}
+.employee-card img {
+  max-width: 100%;
+}
+.employee-card .card-text {
+  padding: 1.5rem;
+  white-space: nowrap;
+}
+.employee-card .card-text p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 #our-services {
   padding-top: 5rem;
 }
@@ -823,7 +852,7 @@ footer {
   justify-content: center;
   gap: 2rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   #our-services .container .services {
     grid-template-columns: 1fr 1fr;
   }
@@ -971,7 +1000,7 @@ footer {
   display: grid;
   justify-content: center;
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   #home-projects .project-slider {
     grid-template-columns: auto auto;
   }
@@ -1059,6 +1088,36 @@ footer {
 }
 #project-aside .aside-content {
   font-size: 14px;
+}
+#project-aside .aside-content .recent-projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+#project-aside .aside-content .recent-projects .recent-project-box {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  max-width: 300px;
+  border-bottom: solid 1px var(--color-border-gray);
+}
+#project-aside .aside-content .recent-projects .recent-project-box h6 {
+  color: var(--color-default);
+  width: 100px;
+}
+#project-aside .aside-content .recent-projects .recent-project-box img {
+  height: 100px;
+  width: 200px;
+}
+#project-aside .aside-content .recent-projects .recent-project-box:hover {
+  transition: 0.3s ease-in-out;
+  opacity: 0.9;
+}
+#project-aside .aside-content .recent-projects .recent-project-box:hover img {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 #project-aside .aside-content .tags {
   display: grid;

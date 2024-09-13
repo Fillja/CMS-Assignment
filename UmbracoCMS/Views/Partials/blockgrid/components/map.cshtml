@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var heightPixels = Model?.Content.Value<int>("heightPixels");
+    var height = $"{heightPixels}px";
+}
+
+<section class="map-section">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2035.143741342983!2d18.053111177531417!3d59.33055397461492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d605e90d5e3%3A0xd007f03e3ffce4f7!2sKlarabergsviadukten%2C%20Stockholm!5e0!3m2!1ssv!2sse!4v1726232554929!5m2!1ssv!2sse" width="100%" height="@height" style="border:0; margin:0; padding:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

@@ -1,0 +1,11 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var noGap = Model!.Content.Value<bool>("noGap") ? "no-gap" : "";   
+}
+
+<div class="@noGap">
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+</div>
