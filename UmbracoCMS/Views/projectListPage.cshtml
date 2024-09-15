@@ -1,5 +1,8 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectListPage>
+
+
 @{
 	Layout = "mainLayout.cshtml";
     ViewBag.Title = Model?.Value("pageTitle") ?? null;
@@ -80,4 +83,4 @@
 
     </div>
 </section>
-@await Html.PartialAsync("partials/static/contact-footer.cshtml")
+@await Html.GetBlockGridHtmlAsync(Model.Layout)

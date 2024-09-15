@@ -666,40 +666,37 @@ footer {
   padding: 1rem 0;
 }
 
-.contact-footer {
-  background-color: var(--color-gray);
+.contact-section {
   position: relative;
   z-index: 0;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 @media (min-width: 1024px) {
-  .contact-footer {
+  .contact-section {
     padding-bottom: 0;
   }
 }
-.contact-footer .container {
+.contact-section .container {
   display: flex;
   justify-content: center;
 }
 @media (min-width: 1024px) {
-  .contact-footer .container {
+  .contact-section .container {
     justify-content: space-between;
   }
 }
-.contact-footer .container .contact-image {
+.contact-section .container .contact-image {
   width: fit-content;
   position: relative;
 }
-.contact-footer .container .contact-image #contact-man {
+.contact-section .container .contact-image #contact-img {
   display: none;
 }
 @media (min-width: 1024px) {
-  .contact-footer .container .contact-image #contact-man {
+  .contact-section .container .contact-image #contact-img {
     display: inline;
   }
 }
-.contact-footer .container .contact-image #bg-img {
+.contact-section .container .contact-image #bg-img {
   display: none;
   position: absolute;
   z-index: -1;
@@ -707,11 +704,11 @@ footer {
   left: 0;
 }
 @media (min-width: 1024px) {
-  .contact-footer .container .contact-image #bg-img {
+  .contact-section .container .contact-image #bg-img {
     display: inline;
   }
 }
-.contact-footer .container .contact-image #dot-img {
+.contact-section .container .contact-image #dot-img {
   display: none;
   position: absolute;
   z-index: -2;
@@ -720,29 +717,32 @@ footer {
   max-width: 100%;
 }
 @media (min-width: 1400px) {
-  .contact-footer .container .contact-image #dot-img {
+  .contact-section .container .contact-image #dot-img {
     display: inline;
   }
 }
-.contact-footer .container .contact-content {
+.contact-section .container .contact-content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 @media (min-width: 1400px) {
-  .contact-footer .container .contact-content {
+  .contact-section .container .contact-content {
     justify-content: center;
   }
 }
-.contact-footer .container .contact-content .contact-row {
+.contact-section .container .contact-content h2 {
+  max-width: 400px;
+}
+.contact-section .container .contact-content .contact-row {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.contact-footer .container .contact-content .contact-row:hover {
+.contact-section .container .contact-content .contact-row:hover {
   opacity: 0.8;
 }
-.contact-footer .container .contact-content .contact-row .icon-text {
+.contact-section .container .contact-content .contact-row .icon-text {
   display: flex;
   gap: 0.5rem;
   align-items: center;

@@ -1,6 +1,6 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 
@@ -15,22 +15,36 @@
 
     var backgroundImg = Umbraco.Media(Guid.Parse("3edba493-2f94-407a-b666-246cbd7f3bcd")) as Image;
     var dotImg = Umbraco.Media(Guid.Parse("434e8b11-be7a-4ca9-817d-0f4f444ce662")) as Image;
-    var contactImg = Umbraco.Media(Guid.Parse("fe2fb8d6-9651-4354-9115-d86a3c42e939")) as Image;
+    var contactImg = Model?.Content?.Value<IPublishedContent>("contactImg")?.Url() ?? null;
+
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "spacing-top" : "";
+    var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
+
+    var sectionHeadline = Model?.Content.Value<string>("sectionHeadline") ?? "";
+    var sectionBackgroundColorLabel = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionBackgroundColor"))?.Label.ToLower() ?? null;
+    var backgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel)) ? $"bg-{sectionBackgroundColorLabel}" : "";
+    
+
+    var sectionGradientColor1 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor1"))?.Label.ToLower() ?? "";
+    var sectionGradientColor2 = (Model.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionGradientColor2"))?.Label.ToLower() ?? "";
+    var color1GradientPercentage = Model?.Content.Value<int>("color1GradientPercentage");
+    var color2GradientPercentage = Model?.Content.Value<int>("color2GradientPercentage");
+    var backgroundGradientClass = (Model!.Content.Value<bool>("sectionBackgroundGradient")) ? $"background: linear-gradient(0deg, var(--color-{@sectionGradientColor1}) {color1GradientPercentage}%, var(--color-{@sectionGradientColor2}) {color2GradientPercentage}%);" : "";
 
 }
 
 
-<section class="contact-section">
+<section class="contact-section @backgroundColorClass @spacingTopClass @spacingBottomClass @backgroundGradientClass" style="@backgroundGradientClass">
     <div class="container">
 
         <div class="contact-image">
-            <img id="contact-img" src="@contactImg.Url()" alt="">
+            <img id="contact-img" src="@contactImg" alt="">
             <img id="bg-img" src="@backgroundImg.Url()" alt="Green square background">
             <img id="dot-img" src="@dotImg.Url()" alt="Dotted background">
         </div>
 
         <div class="contact-content">
-            <h2>Let us know about your next projects!</h2>
+            <h2>@sectionHeadline</h2>
             
             <a href="#">
                 <div class="contact-row">
