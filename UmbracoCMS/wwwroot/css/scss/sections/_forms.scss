@@ -1,0 +1,88 @@
+﻿.form-content {
+
+    .umb-block-list {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        @include tablet {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 1rem;
+        border: solid 1px var(--color-border-gray);
+
+        &::placeholder {
+            font-family: "Poppin", sans-serif;
+            font-style: italic;
+            font-size: 16px;
+            color: var(--color-primary-light);
+        }
+    }
+
+    textarea {
+        height: 200px;
+        resize: none;
+    }
+
+    button {
+        margin-top: 1rem;
+        width: 100%;
+
+        @include tablet {
+            width: auto;
+        }
+    }
+
+    select {
+        background-color: transparent;
+        width: 100%;
+        padding: 1rem;
+        border: solid 1px var(--color-border-gray);
+        color: var(--color-primary-light);
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+
+        option {
+            color: var(--color-secondary);
+            background-color: var(--color-primary);
+        }
+    }
+}
+
+#service-form {
+    padding: 5rem 0;
+
+    .container {
+
+        form {
+            padding: 1rem;
+
+            @include tablet {
+                padding: 0;
+            }
+
+            .info-inputs {
+                margin: 1rem 0;
+                display: flex;
+                flex-direction: column;
+
+                @include tablet {
+                    flex-direction: row;
+                    gap: 1rem;
+                }
+
+                input{
+                    margin: 0.5rem 0;
+
+                    @include tablet{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

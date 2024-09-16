@@ -1,0 +1,31 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>;
+
+@{
+    var upperHeadingContent = Model?.Content.Value<string>("upperHeadingContent");
+    var lowerHeadingContent = Model?.Content.Value<string>("lowerHeadingContent");
+    var formText = Model?.Content.Value<string>("formText");
+
+    var centerContentClass = Model!.Content.Value<bool>("centerContent") ? "center-content" : "";
+    var startContentClass = Model!.Content.Value<bool>("contentAtStartDesktop") ? "start-content" : "";
+
+    var contactForm = Model?.Content.Value<Umbraco.Cms.Core.Models.Blocks.BlockListModel>("contactForm");
+}
+
+<section id="contact-form">
+    <div class="container @centerContentClass @startContentClass">
+
+        <div class="headline">
+            <h6>@upperHeadingContent</h6>
+            <h2>@lowerHeadingContent</h2>
+        </div>
+
+        <p>@formText</p>
+
+        <form class="form-content" onsubmit="handleContactFormSubmit(event)" novalidate>
+            @Html.GetBlockListHtml(contactForm)
+        </form>
+
+    </div>
+</section>

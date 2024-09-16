@@ -1,0 +1,59 @@
+﻿#our-services {
+    padding-top: 5rem;
+
+    .container {
+
+        .headline {
+            text-align: center;
+            padding: 2rem 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .services {
+            display: grid;
+            justify-content: center;
+            gap: 2rem;
+
+            @include medium {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include desktop {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .service-box {
+                max-width: 370px;
+                display: flex;
+                flex-direction: column;
+                box-shadow: var(--color-border-gray) 1px 1px 3px 3px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    transition: transform 0.3s ease-in-out;
+                }
+
+                h4, p {
+                    padding: 2rem;
+                }
+
+                p {
+                    font-size: 14px;
+                }
+
+                &:hover {
+                    transition: 0.3s ease-in-out;
+                    opacity: 0.9;
+                    color: var(--color-dark);
+                    box-shadow: var(--color-shadow) 1px 1px 4px 4px;
+
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}

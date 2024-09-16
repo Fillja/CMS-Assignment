@@ -1,0 +1,138 @@
+﻿#service-aside {
+    display: none;
+    border-right: solid 1px var(--color-border-gray);
+    padding-right: 3rem;
+
+    @include desktop {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        gap: 3rem;
+    }
+
+
+    .aside-content {
+        font-size: 14px;
+        max-width: 330px;
+
+        img {
+            margin: 1rem 0;
+        }
+    }
+}
+
+#project-aside {
+    display: none;
+    border-left: solid 1px var(--color-border-gray);
+    padding-left: 3rem;
+
+    @include desktop {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+
+    .aside-content {
+        font-size: 14px;
+
+        .recent-projects {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            padding: 1rem 0;
+            gap: 1rem;
+
+            .recent-project-box {
+                display: flex;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                max-width: 300px;
+                border-bottom: solid 1px var(--color-border-gray);
+
+
+                h6 {
+                    color: var(--color-default);
+                    width: 100px;
+                }
+
+                img {
+                    height: 100px;
+                    width: 200px;
+                }
+
+                &:hover {
+                    transition: 0.3s ease-in-out;
+                    opacity: 0.9;
+
+                    img {
+                        transition: 0.3s ease-in-out;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+
+        .tags {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            text-align: center;
+            align-items: center;
+            margin-top: 1rem;
+
+            p {
+                padding: .6rem;
+                border: solid 1px var(--color-dark);
+                border-radius: 20px;
+
+                &:hover {
+                    transition: 0.3s ease-in-out;
+                    background-color: var(--color-secondary);
+                }
+            }
+        }
+    }
+}
+
+.aside-support {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+
+    h4 {
+        font-weight: 500;
+    }
+
+    .email-input {
+        background-color: var(--color-light);
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem;
+        border-radius: 6px;
+
+        input {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+
+            &::placeholder {
+                font-style: italic;
+            }
+        }
+
+        i {
+            color: var(--color-primary);
+        }
+    }
+
+    .mail-background {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}

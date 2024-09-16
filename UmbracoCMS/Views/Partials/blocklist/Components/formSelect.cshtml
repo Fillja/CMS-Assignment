@@ -1,0 +1,19 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+
+@{
+    var selectOptions = Model?.Content.Value<IEnumerable<string>>("selectOptions");
+}
+
+@if(selectOptions != null)
+{
+    <div class="form-select">
+        <select>
+            @foreach(var option in selectOptions)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+    </div>
+}

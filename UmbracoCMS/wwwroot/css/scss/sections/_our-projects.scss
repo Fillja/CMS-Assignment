@@ -1,0 +1,57 @@
+﻿#our-projects {
+    padding: 5rem 0;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        @include desktop {
+            flex-direction: row;
+        }
+
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+
+            .project-box {
+                display: flex;
+                gap: 2rem;
+                padding: 2rem 0;
+                border-bottom: solid 1px var(--color-border-gray);
+
+                img {
+                    width: 100%;
+                }
+
+                .project-text {
+                    display: flex;
+                    flex-direction: column;
+
+                    .project-headline {
+                        padding-bottom: 1rem;
+
+                        .project-date {
+                            font-weight: 200;
+
+                            i {
+                                margin-right: .5rem;
+                            }
+                        }
+                    }
+
+                    .read-more {
+                        font-weight: 600;
+                        padding-top: 3rem;
+
+                        i {
+                            margin-left: .5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

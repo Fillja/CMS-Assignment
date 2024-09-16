@@ -1,0 +1,23 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+<section id="service-form">
+    <div class="container">
+
+        <form class="form-content" onsubmit="handleContactFormSubmit(event)" novalidate>
+
+            <h4>Have a question?</h4>
+
+            <div class="info-inputs">
+                <input name="name" type="text" placeholder="Name" required="true">
+                <input name="email" type="email" placeholder="Email" required="true">
+            </div>
+
+            <textarea name="question" type="text" placeholder="Question" required="true"></textarea>
+            <button class="btn-primary" type="submit">Submit</button>
+
+        </form>
+
+    </div>
+</section>
