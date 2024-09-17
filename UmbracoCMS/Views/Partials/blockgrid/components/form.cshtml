@@ -1,6 +1,6 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
     var upperHeadingContent = Model?.Content.Value<string>("upperHeadingContent");
@@ -11,10 +11,14 @@
     var startContentClass = Model!.Content.Value<bool>("contentAtStartDesktop") ? "start-content" : "";
 
     var contactForm = Model?.Content.Value<Umbraco.Cms.Core.Models.Blocks.BlockListModel>("contactForm");
+    var formName = Model?.Content.Value<string>("formName");
+    var formId = formName?.ToString().ToLower().Trim().Replace(" ", "-");
 }
 
-<section id="contact-form">
-    <div class="container @centerContentClass @startContentClass">
+
+<div id="@formId" class="container @centerContentClass @startContentClass">
+
+    <div class="form-headlines">
 
         <div class="headline">
             <h6>@upperHeadingContent</h6>
@@ -23,9 +27,13 @@
 
         <p>@formText</p>
 
-        <form class="form-content" onsubmit="handleContactFormSubmit(event)" novalidate>
-            @Html.GetBlockListHtml(contactForm)
-        </form>
-
     </div>
-</section>
+    
+    @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+    {
+        <div class="form-content">
+            @Html.GetBlockListHtml(contactForm)
+        </div>
+    }
+
+</div>

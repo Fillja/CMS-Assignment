@@ -9,14 +9,17 @@
 
     var isRequired = Model.Content.Value<bool>("isRequired");
     var errorMessage = Model?.Content.Value<string>("errorMessage");
+
+    string uniqueNameString = uniqueName?.ToString() ?? string.Empty;
+    var inputValue = ViewData["uniqueNameString"] as string ?? string.Empty;
 }
 
 <div id="_@uniqueName" class="form-input-group">
-    <label class="form-label" for="@uniqueName">@labelText</label>
-    <textarea id="@uniqueName" name="@uniqueName" placeholder="@placeholderText" class="form-input" required="@isRequired"></textarea>
+    <input type="hidden" name="isMessageRequired" value="true" />
+    <textarea id="@uniqueName" name="@uniqueName" placeholder="@placeholderText" class="form-textarea">@inputValue</textarea>
 
-    @if(isRequired){
+    @if ((bool?)ViewData[$"error_{uniqueNameString}"] == true)
+    {
         <span class="form-input-error">@errorMessage</span>
     }
-    
 </div>

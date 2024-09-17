@@ -1,15 +1,5 @@
 ﻿.form-content {
 
-    .umb-block-list {
-        display: grid;
-        grid-template-columns: 1fr;
-
-        @include tablet {
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-    }
-
     input, textarea {
         width: 100%;
         padding: 1rem;
@@ -40,7 +30,7 @@
     select {
         background-color: transparent;
         width: 100%;
-        padding: 1rem;
+        padding: .8rem;
         border: solid 1px var(--color-border-gray);
         color: var(--color-primary-light);
         font-family: "Poppins", sans-serif;
@@ -75,14 +65,127 @@
                     gap: 1rem;
                 }
 
-                input{
-                    margin: 0.5rem 0;
+                .input-group {
+                    width: 100%;
 
-                    @include tablet{
-                        margin: 0;
+                    input {
+                        margin: 0.5rem 0;
+
+                        @include tablet {
+                            margin: 0;
+                        }
                     }
                 }
             }
         }
     }
+}
+
+#callback-form {
+    @include desktop {
+        position: absolute;
+        top: -140px;
+    }
+
+    @include medium {
+        margin-left: 1rem;
+    }
+
+    box-shadow: 0 4px 8px 0 rgba(90, 90, 90, 0.145), 0 6px 20px 0 rgba(101, 101, 101, 0.151);
+    max-width: 450px;
+    max-height: 700px;
+    padding: 0;
+
+
+
+    .headline {
+        padding: 2rem;
+        background-color: var(--color-primary);
+
+        h2 {
+            font-size: 30px;
+            color: var(--color-secondary);
+        }
+    }
+
+
+    p {
+        padding: 1rem 2rem;
+    }
+
+    .umb-block-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+
+        @include tablet {
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+}
+
+#contact-callback-form {
+
+    .form-headlines {
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+
+        .headline {
+            max-width: 400px;
+        }
+
+        p {
+            max-width: 600px;
+        }
+    }
+
+
+    .umb-block-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "name" "email" "phone" "select" "button";
+        gap: 1rem;
+
+        @include tablet {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "name email" "phone select" "button button";
+            gap: 1rem;
+        }
+
+        #_Name {
+            grid-area: name;
+        }
+
+        #_Email {
+            grid-area: email;
+        }
+
+        #_Phone {
+            grid-area: phone;
+        }
+
+        .form-select {
+            grid-area: select;
+        }
+
+        #_Submit {
+            grid-area: button;
+        }
+    }
+}
+
+.form-input-error{
+    color: #fa8383;
+}
+
+.success-message{
+    color: #96fb6b;
 }

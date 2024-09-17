@@ -2,22 +2,64 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 
+@{
+    bool.TryParse(ViewData["error_name"]?.ToString()!, out bool error_name);
+
+    bool.TryParse(ViewData["error_email"]?.ToString()!, out bool error_email);
+
+    bool.TryParse(ViewData["error_message"]?.ToString()!, out bool error_message);
+}
+
 <section id="service-form">
     <div class="container">
 
-        <form class="form-content" onsubmit="handleContactFormSubmit(event)" novalidate>
+        @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+        {
+            <div class="form-content">
+                <h4>Have a question?</h4>
 
-            <h4>Have a question?</h4>
+                <div class="info-inputs">
+                    <div class="input-group">
+                        <input name="name" type="text" placeholder="Name" value="@ViewData["name"]">
+                        @if (error_name)
+                        {
+                            <span class="form-input-error">You must enter a name</span>
+                        }
+                    </div>
 
-            <div class="info-inputs">
-                <input name="name" type="text" placeholder="Name" required="true">
-                <input name="email" type="email" placeholder="Email" required="true">
+                    <div class="input-group">
+                        <input name="email" type="email" placeholder="Email" value="@ViewData["email"]">
+                        @if (error_email)
+                        {
+                            <span class="form-input-error">You must enter an email address</span>
+                        }
+                    </div>
+
+                </div>
+
+                
+                <textarea name="message" type="text" placeholder="Question">@ViewData["message"]</textarea>
+                <input type="hidden" name="isMessageRequired" value="true" />
+
+                @if (error_message)
+                {
+                    <span class="form-input-error">You must enter a message</span>
+                }
+
+                @if (TempData["success"] == null)
+                {
+                    <div>
+                        <button class="btn-primary" type="submit">Submit</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="success-message">@TempData["success"]</div>
+                }
+
+                
             </div>
-
-            <textarea name="question" type="text" placeholder="Question" required="true"></textarea>
-            <button class="btn-primary" type="submit">Submit</button>
-
-        </form>
+        }
 
     </div>
 </section>

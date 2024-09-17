@@ -24,9 +24,12 @@
     <div class="container">
 
         <div class="contact-image">
-            <img id="contact-img" src="@contactImg.Url()" alt="">
-            <img id="bg-img" src="@backgroundImg.Url()" alt="Green square background">
-            <img id="dot-img" src="@dotImg.Url()" alt="Dotted background">
+            @if(backgroundImg != null && dotImg != null && contactImg != null)
+            {
+                <img id="contact-img" src="@contactImg.Url()" alt="">
+                <img id="bg-img" src="@backgroundImg.Url()" alt="Green square background">
+                <img id="dot-img" src="@dotImg.Url()" alt="Dotted background">
+            }
         </div>
 
         <div class="contact-content">

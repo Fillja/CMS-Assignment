@@ -1205,16 +1205,6 @@ footer {
   border-radius: 20px;
 }
 
-.form-content .umb-block-list {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 768px) {
-  .form-content .umb-block-list {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-}
 .form-content input, .form-content textarea {
   width: 100%;
   padding: 1rem;
@@ -1242,7 +1232,7 @@ footer {
 .form-content select {
   background-color: transparent;
   width: 100%;
-  padding: 1rem;
+  padding: 0.8rem;
   border: solid 1px var(--color-border-gray);
   color: var(--color-primary-light);
   font-family: "Poppins", sans-serif;
@@ -1275,11 +1265,102 @@ footer {
     gap: 1rem;
   }
 }
-#service-form .container form .info-inputs input {
+#service-form .container form .info-inputs .input-group {
+  width: 100%;
+}
+#service-form .container form .info-inputs .input-group input {
   margin: 0.5rem 0;
 }
 @media (min-width: 768px) {
-  #service-form .container form .info-inputs input {
+  #service-form .container form .info-inputs .input-group input {
     margin: 0;
   }
+}
+
+#callback-form {
+  box-shadow: 0 4px 8px 0 rgba(90, 90, 90, 0.145), 0 6px 20px 0 rgba(101, 101, 101, 0.151);
+  max-width: 450px;
+  max-height: 700px;
+  padding: 0;
+}
+@media (min-width: 1400px) {
+  #callback-form {
+    position: absolute;
+    top: -140px;
+  }
+}
+@media (min-width: 1024px) {
+  #callback-form {
+    margin-left: 1rem;
+  }
+}
+#callback-form .headline {
+  padding: 2rem;
+  background-color: var(--color-primary);
+}
+#callback-form .headline h2 {
+  font-size: 30px;
+  color: var(--color-secondary);
+}
+#callback-form p {
+  padding: 1rem 2rem;
+}
+#callback-form .umb-block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+#callback-form .umb-block-list button {
+  width: 100%;
+}
+
+#contact-callback-form .form-headlines {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+#contact-callback-form .form-headlines .headline {
+  max-width: 400px;
+}
+#contact-callback-form .form-headlines p {
+  max-width: 600px;
+}
+#contact-callback-form .umb-block-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "name" "email" "phone" "select" "button";
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  #contact-callback-form .umb-block-list {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "name email" "phone select" "button button";
+    gap: 1rem;
+  }
+}
+#contact-callback-form .umb-block-list #_Name {
+  grid-area: name;
+}
+#contact-callback-form .umb-block-list #_Email {
+  grid-area: email;
+}
+#contact-callback-form .umb-block-list #_Phone {
+  grid-area: phone;
+}
+#contact-callback-form .umb-block-list .form-select {
+  grid-area: select;
+}
+#contact-callback-form .umb-block-list #_Submit {
+  grid-area: button;
+}
+
+.form-input-error {
+  color: #fa8383;
+}
+
+.success-message {
+  color: #96fb6b;
 }

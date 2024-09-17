@@ -9,14 +9,31 @@
     var buttonColor = (Model.Content?.Value <ColorPickerValueConverter.PickedColor>("buttonColor"))?.Label.ToLower() ?? null;
 }
 
-@if(!string.IsNullOrEmpty(buttonColor)){
-    <div id="_@buttonText" class="form-input-group">
-        <button type="@buttonType" class="btn btn-@buttonColor">@buttonText</button>
-    </div>
+@if(!string.IsNullOrEmpty(buttonColor))
+{
+    if (TempData["success"] == null)
+    {
+        <div id="_@buttonText" class="form-input-group">
+            <button type="@buttonType" class="btn btn-@buttonColor">@buttonText</button>
+        </div>
+    }
+    else
+    {
+        <div class="success-message">@TempData["success"]</div>
+    }
 
 }
-else{
-    <div id="_@buttonText" class="form-input-group">
-        <button type="@buttonType" class="btn">@buttonText</button>
-    </div>
+else
+{
+    if (TempData["success"] == null)
+    {
+        <div id="_@buttonText" class="form-input-group">
+            <button type="@buttonType" class="btn">@buttonText</button>
+        </div>
+    }
+    else
+    {
+        <div class="success-message">@TempData["success"]</div>
+    }
+
 }
