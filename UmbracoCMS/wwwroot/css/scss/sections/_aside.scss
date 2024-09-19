@@ -96,7 +96,7 @@
     }
 }
 
-.aside-support {
+.aside-form {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -114,6 +114,7 @@
         justify-content: space-between;
         padding: 0.8rem;
         border-radius: 6px;
+        z-index: 2;
 
         input {
             background-color: transparent;
@@ -126,12 +127,27 @@
         }
 
         i {
+            font-size: 16px;
             color: var(--color-primary);
+        }
+
+        .email-btn{
+            background-color: transparent;
+            border: solid 1px var(--color-primary);
+            border-radius: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+
+            &:hover{
+                transition: 0.3s ease-in-out;
+                background-color: var(--color-secondary);
+            }
         }
     }
 
     .mail-background {
         position: absolute;
+        z-index: 1;
         bottom: 0;
         right: 0;
     }

@@ -44,42 +44,39 @@
 }
 
 #service-form {
-    padding: 5rem 0;
 
-    .container {
+    form {
+        padding: 1rem;
 
-        form {
-            padding: 1rem;
+        @include tablet {
+            padding: 0;
+        }
+
+        .info-inputs {
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
 
             @include tablet {
-                padding: 0;
+                flex-direction: row;
+                gap: 1rem;
             }
 
-            .info-inputs {
-                margin: 1rem 0;
-                display: flex;
-                flex-direction: column;
+            .input-group {
+                width: 100%;
 
-                @include tablet {
-                    flex-direction: row;
-                    gap: 1rem;
-                }
+                input {
+                    margin: 0.5rem 0;
 
-                .input-group {
-                    width: 100%;
-
-                    input {
-                        margin: 0.5rem 0;
-
-                        @include tablet {
-                            margin: 0;
-                        }
+                    @include tablet {
+                        margin: 0;
                     }
                 }
             }
         }
     }
 }
+
 
 #callback-form {
     @include desktop {
@@ -128,56 +125,86 @@
     }
 }
 
+.map-section{
+    z-index: -1;
+}
+
 #contact-callback-form {
+    padding: 5rem 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
 
-    .form-headlines {
-        padding: 2rem 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-
-        .headline {
-            max-width: 400px;
-        }
-
-        p {
-            max-width: 600px;
-        }
-    }
-
-
-    .umb-block-list {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-areas: "name" "email" "phone" "select" "button";
-        gap: 1rem;
+    .form-container {
+        background-color: var(--color-light);
+        box-shadow: var(--color-shadow) 1px 1px 2px 2px;
+        padding: 2rem;
+        z-index: 1;
 
         @include tablet {
-            grid-template-columns: 1fr 1fr;
-            grid-template-areas:
-                "name email" "phone select" "button button";
+            width: 100%;
+        }
+
+        @include medium {
+            width: 1000px;
+            position: absolute;
+            top: -25rem;
+        }
+
+        @include desktop {
+            width: 1200px;
+        }
+
+
+        .form-headlines {
+            padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+
+            .headline {
+                max-width: 400px;
+            }
+
+            p {
+                max-width: 600px;
+            }
+        }
+
+
+        .umb-block-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "name" "email" "phone" "select" "button";
             gap: 1rem;
-        }
 
-        #_Name {
-            grid-area: name;
-        }
+            @include tablet {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "name email" "phone select" "button button";
+                gap: 1rem;
+            }
 
-        #_Email {
-            grid-area: email;
-        }
+            #_Name {
+                grid-area: name;
+            }
 
-        #_Phone {
-            grid-area: phone;
-        }
+            #_Email {
+                grid-area: email;
+            }
 
-        .form-select {
-            grid-area: select;
-        }
+            #_Phone {
+                grid-area: phone;
+            }
 
-        #_Submit {
-            grid-area: button;
+            .form-select {
+                grid-area: select;
+            }
+
+            #_Submit {
+                grid-area: button;
+            }
         }
     }
 }
@@ -187,5 +214,5 @@
 }
 
 .success-message{
-    color: #96fb6b;
+    color: #5cb85c;
 }

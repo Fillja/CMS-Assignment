@@ -15,25 +15,49 @@
     var formId = formName?.ToString().ToLower().Trim().Replace(" ", "-");
 }
 
+<section id="contact-form">
+    <div id="@formId" class="container @centerContentClass @startContentClass">
 
-<div id="@formId" class="container @centerContentClass @startContentClass">
+        <div class="form-container">
 
-    <div class="form-headlines">
+            <div class="form-headlines">
 
-        <div class="headline">
-            <h6>@upperHeadingContent</h6>
-            <h2>@lowerHeadingContent</h2>
+                <div class="headline">
+                    <h6>@upperHeadingContent</h6>
+                    <h2>@lowerHeadingContent</h2>
+                </div>
+
+                <p>@formText</p>
+
+            </div>
+            
+            @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+            {
+                <div class="form-content">
+                    @Html.GetBlockListHtml(contactForm)
+                </div>
+            }
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var errorName = '@(ViewData["error_name"] != null ? "true" : "false")';
+                    var errorEmail = '@(ViewData["error_email"] != null ? "true" : "false")';
+                    var errorMessage = '@(ViewData["error_message"] != null ? "true" : "false")';
+
+                    if (errorName === "true" || errorEmail === "true" || errorMessage === "true") {
+                        var hasErrorBool = true;
+                    }
+
+                    if (hasErrorBool) {
+                        var formSection = document.getElementById("contact-form");
+                        formSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            </script>
+            
         </div>
 
-        <p>@formText</p>
 
     </div>
-    
-    @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
-    {
-        <div class="form-content">
-            @Html.GetBlockListHtml(contactForm)
-        </div>
-    }
+</section>
 
-</div>

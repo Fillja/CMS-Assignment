@@ -7,8 +7,6 @@
     var rootContents = UmbracoHelper.ContentAtRoot();
     var settings = rootContents.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
 
-    var mailImage = Umbraco.Media(Guid.Parse("ef15b400-f3f7-4d9e-8cc7-5b36b7ae580c")) as Image;
-
 	var selection = Umbraco.Content(Guid.Parse("b192c7ef-3cb4-4911-ad7a-90097ca6acda"))
     .ChildrenOfType("projectItemTemplate")
     .Where(x => x.IsVisible());
@@ -75,14 +73,6 @@
 
     </div>
 
-    <div class="aside-support bg-primary">
-        <h4>How can we help you?</h4>
-        <p>Online support 24/7. We are here to help you.</p>
-        <label for="email" class="email-input">
-            <input id="email" type="text" placeholder="E-mail address">
-            <i class="fa-light fa-envelope"></i>
-        </label>
-        <img class="mail-background" src="@mailImage.Url()">
-    </div>
+    @await Html.PartialAsync("aside-form.cshtml")
     
 </aside>

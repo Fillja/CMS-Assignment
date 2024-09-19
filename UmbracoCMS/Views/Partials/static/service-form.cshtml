@@ -10,8 +10,8 @@
     bool.TryParse(ViewData["error_message"]?.ToString()!, out bool error_message);
 }
 
-<section id="service-form">
-    <div class="container">
+<section id="contact-form">
+    <div id="service-form" class="container">
 
         @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
         {
@@ -59,6 +59,23 @@
 
                 
             </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var errorName = '@(ViewData["error_name"] != null ? "true" : "false")';
+                    var errorEmail = '@(ViewData["error_email"] != null ? "true" : "false")';
+                    var errorMessage = '@(ViewData["error_message"] != null ? "true" : "false")';
+
+                    if (errorName === "true" || errorEmail === "true" || errorMessage === "true") {
+                        var hasErrorBool = true;
+                    }
+
+                    if (hasErrorBool) {
+                        var formSection = document.getElementById("contact-form");
+                        formSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            </script>
         }
 
     </div>

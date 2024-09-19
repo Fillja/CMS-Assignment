@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StackExchange.Profiling.Internal;
+using Microsoft.IdentityModel.Tokens;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
 using Umbraco.Cms.Core.Routing;
@@ -8,18 +8,25 @@ using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Website.Controllers;
 using UmbracoCMS.Models;
+using UmbracoCMS.Services;
 
 namespace UmbracoCMS.Controllers;
 
 public class ContactSurfaceController : SurfaceController
 {
+    private readonly EmailService _emailService;
+
     public ContactSurfaceController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
     {
+        _emailService = new EmailService();
     }
 
-    public IActionResult HandleSubmit(ContactFormModel form, bool isMessageRequired, bool isPhoneRequired)
+    public async Task<IActionResult> HandleSubmit(ContactFormModel form, bool isMessageRequired, bool isPhoneRequired)
     {
-        if (!ModelState.IsValid || isMessageRequired && form.Message == null || isPhoneRequired && form.Phone == null) 
+        var sectionId = "contact-form";
+        var page = CurrentPage?.Url();
+
+        if (!ModelState.IsValid || isMessageRequired && form.Message == null || isPhoneRequired && form.Phone == null)
         {
             ViewData["name"] = form.Name;
             ViewData["email"] = form.Email;
@@ -34,7 +41,44 @@ public class ContactSurfaceController : SurfaceController
 
             return CurrentUmbracoPage();
         }
-        TempData["success"] = "Form submitted successfully!";
-        return RedirectToCurrentUmbracoPage();
+
+        var emailSent = await _emailService.SendConfirmationEmailAsync(form.Email);
+
+        if (emailSent)
+        {
+            TempData["success"] = "Form submitted successfully! A confirmation has been sent to your email.";
+        }
+        else
+        {
+            TempData["success"] = "Form submitted successfully, but there was an error in sending confirmation email.";
+        }
+
+
+        return Redirect($"{page}#{sectionId}");
+    }
+
+    public async Task<IActionResult> HandleAsideForm(AsideFormModel form)
+    {
+        var page = CurrentPage?.Url();
+
+        if (!ModelState.IsValid)
+        {
+            ViewData["email_error"] = "You must enter an email!";
+
+            return CurrentUmbracoPage();
+        }
+
+        var emailSent = await _emailService.SendConfirmationEmailAsync(form.Email);
+
+        if (emailSent)
+        {
+            TempData["success"] = "Form submitted successfully! A confirmation has been sent to your email";
+        }
+        else
+        {
+            TempData["success"] = "Form submitted successfully, but there was an error in sending confirmation email.";
+        }
+
+        return Redirect($"{page}#aside-form");
     }
 }
